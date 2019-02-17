@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns="http://www.springframework.org/schema/mvc"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xmlns:beans="http://www.springframework.org/schema/beans"
+             xmlns:context="http://www.springframework.org/schema/context"
+             xmlns:mvc="http://www.springframework.org/schema/mvc"
+             xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans.xsd
+	http://www.springframework.org/schema/context
+	http://www.springframework.org/schema/context/spring-context.xsd
+    http://www.springframework.org/schema/mvc
+	http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+
+    <!-- Enable annotations, so we don't register all our beans as xml file,
+        but also with annotations -->
+    <!--<mvc:annotation-driven/> -->
+
+    <!-- Now that we enable annotations, we use them, after you use them you
+        tell spring where are the classes that use them, to let Spring perform its
+        work -->
+
+    <context:component-scan base-package="com.melardev.controllers"/>
+    <context:component-scan base-package="com.melardev.config"/>
+    <context:component-scan base-package="com.melardev.exceptions"/>
+    <context:component-scan base-package="com.melardev.services"/>
+    <context:component-scan base-package="com.melardev.dao"/>
+
+    <!--
+        <beans:bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
+            <beans:property name="basename" value="errors"/>
+        </beans:bean>
+
+    <mvc:resources mapping="/css/**" location="/css/"/>
+    <mvc:resources mapping="/js/**" location="/js/"/>
+    <mvc:resources mapping="/imgs/**" location="/imgs/"/>
+    <mvc:resources mapping="/fonts/**" location="/fonts/"/>
+-->
+
+    <!--
+
+    <mvc:interceptors>
+        <mvc:interceptor>
+            <mapping path="/**"/>
+            <mapping path="/test/**"/>
+            <beans:bean class="com.melardev.interceptors.MyInterceptor"/>
+        </mvc:interceptor>
+    </mvc:interceptors>
+    -->
+
+    <!--
+    <beans:bean id="singleFileValidator" class="com.melardev.validators.FileValidator"/>
+    <beans:bean id="articlesXmlService" class="com.melardev.services.ArticlesXmlService"/>
+    -->
+
+
+    <!--
+    <mvc:interceptors>
+        <beans:bean class="com.melardev.interceptors.MyInterceptor2">
+            <beans:property name="cacheMappings">
+                <beans:props>
+                    <beans:prop key="/**/*.js">86400</beans:prop>
+                    <beans:prop key="/**/*.css">86400</beans:prop>
+                    <beans:prop key="/**/*.png">86400</beans:prop>
+                    <beans:prop key="/**/*.jpg">86400</beans:prop>
+                </beans:props>
+            </beans:property>
+        </beans:bean>
+    </mvc:interceptors>
+-->
+
+
+    <!-- Let's register one bean here, it will be our view resolver, he is the guy who
+    serves the pages, there are many view resolvers, each one has its purpose, the
+    obviously
+    <beans:bean
+            class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <beans:property name="prefix" value="/views/"/>
+        <beans:property name="suffix" value=".jsp"/>
+    </beans:bean>
+-->
+
+    <!-- maxUploadSize = 100MB maxInMemorySize = 1MB of file in memory (in bytes) -->
+    <!--
+    <beans:bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <beans:property name="maxUploadSize" value="104857600"/>
+        <beans:property name="maxInMemorySize" value="1048576"/>
+    </beans:bean>
+    -->
+
+    <!--
+        Configuration for the Views to support Marshalling
+        <beans:bean id="beanNameViewResolver"
+                    class="org.springframework.web.servlet.view.BeanNameViewResolver">
+            <beans:property name="order" value="1"/>
+        </beans:bean>
+    -->
+    <!--
+        <beans:bean name="marshaller" class="org.springframework.oxm.jaxb.Jaxb2Marshaller">
+            <beans:property name="packagesToScan" value="com.melardev.models"/>
+        </beans:bean>
+
+        <beans:bean id="articleView"
+                    class="org.springframework.web.servlet.view.xml.MarshallingView">
+
+            Approach 1
+            <beans:constructor-arg>
+                <beans:bean class="org.springframework.oxm.jaxb.Jaxb2Marshaller">
+                    <beans:property name="packagesToScan" value="com.melardev.models"/>
+                </beans:bean>
+            </beans:constructor-arg>-->
+
+    <!-- Approach 2
+    <beans:property name="marshaller" ref="marshaller"/>
+    -->
+    <!-- </beans:bean>
+ -->
+
+    <!--
+    Configuration needed for XStream Marshaller
+    <beans:bean id="marshaller" class="org.springframework.web.servlet.view.xml.MarshallingView">
+        <beans:constructor-arg>
+            <beans:bean class="org.springframework.oxm.xstream.XStreamMarshaller">
+                <beans:property name="autodetectAnnotations" value="true" />
+            </beans:bean>
+        </beans:constructor-arg>
+    </beans:bean>
+    *-->
+
+
+    <!--<beans:bean id="/http_request_handler_adapter" class="com.melardev.controllers.ControllerFromInterface.MyHttpRequestHandler"/> -->
+    <!-- <beans:bean name="some" class="com.melardev.listeners.EventListener"/> -->
+    <!--<beans:bean id="/url_to_bean_name" class="com.melardev.controllers.BeanNameDemoController"/>-->
+
+</beans:beans>
